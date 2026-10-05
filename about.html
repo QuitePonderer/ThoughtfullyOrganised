@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | Thoughtfully Organised</title>
+  <link rel="preload" href="assets/fonts/alex-brush.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/italianno.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="assets/fonts.css" />
+  <link rel="stylesheet" href="assets/site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="navrow">
+      <a href="index.html" class="brand">
+        <img class="brand-mark" src="assets/arcs_only.png" alt="" />
+        <img class="brand-wordmark" src="assets/Thoughtfully_Organised_Wordmark.png" alt="Thoughtfully Organised" />
+      </a>
+      <nav class="main-nav" id="navLinks">
+        <a href="home-organisation.html">Home Organisation</a>
+        <a href="downsizing-moving.html">Downsizing &amp; Moving</a>
+        <a href="family-organisation.html">Family Organisation</a>
+        <a href="ndis-support.html">NDIS Support</a>
+        <a href="about.html">About</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="contact.html" class="btn btn-primary">Get in touch</a>
+      </nav>
+      <button class="navtoggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+    </div>
+  </header>
+
+  <main class="section-heading-28">
+    <section class="page-hero">
+      <div class="wrap page-hero-inner">
+        <span class="eyebrow">About</span>
+        <h1>Practical support, without the pressure.</h1>
+        <p class="lead">We’ll work with you to understand what’s feeling difficult and find practical ways to make things work better for you.</p>
+        <div class="hero-actions">
+          <a href="contact.html" class="btn btn-primary">Get in touch</a>
+          <a href="home-organisation.html" class="btn btn-ghost">See services</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="alt">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">Why we do this</div>
+          <h2>Life happens, and home doesn't always keep up. That's where we come in.</h2>
+        </div>
+
+        <div class="feature-list home-area-list about-why-list">
+          <div class="feature-item">
+            <h3>Zero judgement</h3>
+            <p>We do not judge how people live or how much they own. We focus on what will make life easier.</p>
+          </div>
+          <div class="feature-item">
+            <h3>Personalised systems</h3>
+            <p>There is no one-size-fits-all method. We work with your routine, your goals, and your home.</p>
+          </div>
+          <div class="feature-item">
+            <h3>Real-life practicality</h3>
+            <p>Our process is built for real households, real schedules, and realistic maintenance.</p>
+          </div>
+          <div class="feature-item">
+            <h3>Inclusive approach</h3>
+            <p>We support neurodiversity, different life stages, and varying levels of capacity with empathy and flexibility.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="cta-panel">
+          <h2>Let’s make your home work for you.</h2>
+          <p>Whether you need support for a room, a move, or a whole family system, we can help.</p>
+          <div class="hero-actions">
+            <a href="contact.html" class="btn btn-primary">Contact us</a>
+            <a href="index.html" class="btn btn-ghost">Back to home</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <a href="index.html" class="brand"><img src="assets/Thoughtfully_Organised_Wordmark.png" alt="Thoughtfully Organised" /></a>
+      <div class="footer-links">
+        <a href="home-organisation.html">Home Organisation</a>
+        <a href="downsizing-moving.html">Downsizing &amp; Moving</a>
+        <a href="family-organisation.html">Family Organisation</a>
+        <a href="ndis-support.html">NDIS Support</a>
+        <a href="about.html">About</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <p>&copy; 2026 Thoughtfully Organised.</p>
+    </div>
+  </footer>
+
+  <script>
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    if (navToggle && navLinks) {
+      const closeMenu = () => {
+        navLinks.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.textContent = '☰';
+      };
+
+      const openMenu = () => {
+        navLinks.classList.add('open');
+        navToggle.setAttribute('aria-expanded', 'true');
+        navToggle.textContent = '✕';
+      };
+
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.textContent = '☰';
+
+      navToggle.addEventListener('click', (event) => {
+        event.stopPropagation();
+        if (navLinks.classList.contains('open')) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      });
+
+      navLinks.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => closeMenu());
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!navLinks.contains(event.target) && !navToggle.contains(event.target) && navLinks.classList.contains('open')) {
+          closeMenu();
+        }
+      });
+    }
+  </script>
+</body>
+</html>

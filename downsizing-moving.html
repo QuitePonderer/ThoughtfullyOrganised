@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Downsizing &amp; Moving | Thoughtfully Organised</title>
+  <link rel="preload" href="assets/fonts/alex-brush.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/italianno.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="assets/fonts.css" />
+  <link rel="stylesheet" href="assets/site.css" />
+</head>
+<body class="downsizing-page">
+  <header class="site-header">
+    <div class="navrow">
+      <a href="index.html" class="brand">
+        <img class="brand-mark" src="assets/arcs_only.png" alt="" />
+        <img class="brand-wordmark" src="assets/Thoughtfully_Organised_Wordmark.png" alt="Thoughtfully Organised" />
+      </a>
+      <nav class="main-nav" id="navLinks">
+        <a href="home-organisation.html">Home Organisation</a>
+        <a href="downsizing-moving.html">Downsizing &amp; Moving</a>
+        <a href="family-organisation.html">Family Organisation</a>
+        <a href="ndis-support.html">NDIS Support</a>
+        <a href="about.html">About</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="contact.html" class="btn btn-primary">Get in touch</a>
+      </nav>
+      <button class="navtoggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+    </div>
+  </header>
+
+  <main class="section-heading-28">
+    <section class="page-hero">
+      <div class="wrap page-hero-inner">
+        <span class="eyebrow">Downsizing &amp; Moving</span>
+        <h1>Downsize without the overwhelm.</h1>
+        <p class="lead">Moving and downsizing can bring up a lot — physically, emotionally, and practically. We help you make calm, clear decisions and put a plan in place, so moving day runs smoothly.</p>
+        <div class="hero-actions">
+          <a href="contact.html" class="btn btn-primary">Get in touch</a>
+          <a href="pricing.html" class="btn btn-ghost">See packages</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="alt">
+      <div class="downsizing-process-section">
+        <div class="wrap">
+          <div class="section-head">
+            <div class="kicker">Flexible support</div>
+            <h2>Help you move through change</h2>
+            <p>We can support you where it's needed, whether that's sorting and packing before moving day, planning the move, settling in, or a combination.</p>
+          </div>
+
+          <div class="timeline">
+            <div class="step">
+              <div class="step-content">
+                <h3>Before the move</h3>
+                <p>We help you sort belongings, decide what to keep or let go, and work out what to pack early and what to keep accessible until moving day.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-content">
+                <h3>Move-day plan</h3>
+                <p>We help you plan a room-by-room packing approach with clear labels, so boxes are easy to find at the other end.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-content">
+                <h3>Settling in</h3>
+                <p>We can help unpack key areas, organise a specific space and set up practical systems so everyday life feels easier in your new home.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">Common challenges</div>
+          <h2>What we help with</h2>
+        </div>
+
+        <div class="feature-list home-area-list downsizing-challenges-list">
+          <div class="feature-item">
+            <h3>Emotional decision-making</h3>
+            <p>We create a compassionate, practical process for deciding what to keep and what to let go of.</p>
+          </div>
+          <div class="feature-item">
+            <h3>Time pressure</h3>
+            <p>When a move is approaching quickly, we focus on high-impact priorities and clear action plans.</p>
+          </div>
+          <div class="feature-item">
+            <h3>Large quantities of belongings</h3>
+            <p>We help sort, categorise and simplify so the move feels far more manageable.</p>
+          </div>
+        </div>
+        <p class="section-note" style="max-width:640px; margin:36px auto 0; text-align:center; font-size:14.5px; font-style:italic; color:#5A4A44;">Heavy lifting and transport are handled by your removalist or family — we focus on the planning and decisions that make their job (and yours) easier.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="cta-panel">
+          <h2>Need support with a transition?</h2>
+          <p>We can help you plan a smoother move, a calmer downsizing process, and a home that feels settled sooner.</p>
+          <div class="hero-actions">
+            <a href="contact.html" class="btn btn-primary">Talk to us</a>
+            <a href="index.html" class="btn btn-ghost">Back to home</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <a href="index.html" class="brand"><img src="assets/Thoughtfully_Organised_Wordmark.png" alt="Thoughtfully Organised" /></a>
+      <div class="footer-links">
+        <a href="home-organisation.html">Home Organisation</a>
+        <a href="downsizing-moving.html">Downsizing &amp; Moving</a>
+        <a href="family-organisation.html">Family Organisation</a>
+        <a href="ndis-support.html">NDIS Support</a>
+        <a href="about.html">About</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <p>&copy; 2026 Thoughtfully Organised.</p>
+    </div>
+  </footer>
+
+  <script>
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    if (navToggle && navLinks) {
+      const closeMenu = () => {
+        navLinks.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.textContent = '☰';
+      };
+
+      const openMenu = () => {
+        navLinks.classList.add('open');
+        navToggle.setAttribute('aria-expanded', 'true');
+        navToggle.textContent = '✕';
+      };
+
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.textContent = '☰';
+
+      navToggle.addEventListener('click', (event) => {
+        event.stopPropagation();
+        if (navLinks.classList.contains('open')) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      });
+
+      navLinks.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => closeMenu());
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!navLinks.contains(event.target) && !navToggle.contains(event.target) && navLinks.classList.contains('open')) {
+          closeMenu();
+        }
+      });
+    }
+  </script>
+</body>
+</html>

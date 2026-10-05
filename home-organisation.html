@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home Organisation | Thoughtfully Organised</title>
+  <link rel="preload" href="assets/fonts/alex-brush.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/italianno.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="assets/fonts.css" />
+  <link rel="stylesheet" href="assets/site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="navrow">
+      <a href="index.html" class="brand">
+        <img class="brand-mark" src="assets/arcs_only.png" alt="" />
+        <img class="brand-wordmark" src="assets/Thoughtfully_Organised_Wordmark.png" alt="Thoughtfully Organised" />
+      </a>
+      <nav class="main-nav" id="navLinks">
+        <a href="home-organisation.html">Home Organisation</a>
+        <a href="downsizing-moving.html">Downsizing &amp; Moving</a>
+        <a href="family-organisation.html">Family Organisation</a>
+        <a href="ndis-support.html">NDIS Support</a>
+        <a href="about.html">About</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="contact.html" class="btn btn-primary">Get in touch</a>
+      </nav>
+      <button class="navtoggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+    </div>
+  </header>
+
+  <main class="section-heading-28">
+    <section class="page-hero">
+      <div class="wrap page-hero-inner">
+        <span class="eyebrow">Home Organisation</span>
+        <h1>Make your home feel lighter, calmer, and easier to live in.</h1>
+        <p class="lead">We help you create practical systems for the rooms and routines that feel hardest right now, without pressure, judgement, or overcomplicated trends.</p>
+        <div class="hero-actions">
+          <a href="contact.html" class="btn btn-primary">Get in touch</a>
+          <a href="pricing.html" class="btn btn-ghost">View pricing</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="alt home-process-section">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">The process</div>
+          <h2>A gentle, practical approach</h2>
+        </div>
+
+        <div class="timeline">
+          <div class="step">
+            <div class="step-content">
+              <div class="step-number">1</div>
+              <h3>Assess the Space</h3>
+              <p>We identify what is working, what isn't, and what matters most in the space.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <div class="step-number">2</div>
+              <h3>Sort with intention</h3>
+              <p>We simplify categories, reduce excess, and decide what belongs where.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <div class="step-number">3</div>
+              <h3>Create sustainable systems</h3>
+              <p>We build storage, routines, and habits that are realistic for your lifestyle.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="alt home-areas-section">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">What areas we support</div>
+          <h2>Designed for everyday life</h2>
+          <p>From the pantry to the front entry, we focus on what actually helps your home work better for you.</p>
+        </div>
+
+        <div class="feature-list home-area-list">
+          <div class="feature-item">
+            <h3>Kitchen &amp; pantry</h3>
+            <p>Practical zones that make cooking and meal prep easier.</p>
+          </div>
+          <div class="feature-item">
+            <h3>Wardrobes &amp; bedrooms</h3>
+            <p>Clear storage for calmer beginnings and endings to the day.</p>
+          </div>
+          <div class="feature-item">
+            <h3>Bathrooms &amp; laundry</h3>
+            <p>Simple routines that reduce friction and visual overwhelm.</p>
+          </div>
+          <div class="feature-item">
+            <h3>Garage &amp; home office</h3>
+            <p>Better storage and easier systems for more usable spaces.</p>
+          </div>
+          <div class="feature-item">
+            <h3>Children's spaces</h3>
+            <p>Easy-to-maintain storage that supports independence.</p>
+          </div>
+          <div class="feature-item">
+            <h3>Whole-home reset</h3>
+            <p>Systems that help your whole home work better together.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="cta-panel">
+          <h2>Ready for a calmer, simpler home?</h2>
+          <p>Let’s talk about the spaces that feel most overwhelmed and create a plan that fits your life.</p>
+          <div class="hero-actions">
+            <a href="contact.html" class="btn btn-primary">Get in touch</a>
+            <a href="index.html" class="btn btn-ghost">Back to home</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <a href="index.html" class="brand"><img src="assets/Thoughtfully_Organised_Wordmark.png" alt="Thoughtfully Organised" /></a>
+      <div class="footer-links">
+        <a href="home-organisation.html">Home Organisation</a>
+        <a href="downsizing-moving.html">Downsizing &amp; Moving</a>
+        <a href="family-organisation.html">Family Organisation</a>
+        <a href="ndis-support.html">NDIS Support</a>
+        <a href="about.html">About</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <p>&copy; 2026 Thoughtfully Organised.</p>
+    </div>
+  </footer>
+
+  <script>
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    if (navToggle && navLinks) {
+      const closeMenu = () => {
+        navLinks.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.textContent = '☰';
+      };
+
+      const openMenu = () => {
+        navLinks.classList.add('open');
+        navToggle.setAttribute('aria-expanded', 'true');
+        navToggle.textContent = '✕';
+      };
+
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.textContent = '☰';
+
+      navToggle.addEventListener('click', (event) => {
+        event.stopPropagation();
+        if (navLinks.classList.contains('open')) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      });
+
+      navLinks.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => closeMenu());
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!navLinks.contains(event.target) && !navToggle.contains(event.target) && navLinks.classList.contains('open')) {
+          closeMenu();
+        }
+      });
+    }
+  </script>
+</body>
+</html>
