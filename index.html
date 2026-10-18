@@ -49,8 +49,10 @@
   .main-nav a{text-decoration:none; color:var(--ink-soft); font-size:clamp(11px,0.9vw,14px); font-weight:600; letter-spacing:0.08em; text-transform:uppercase;
     transition:all .2s ease; padding:9px 10px; border-radius:999px; margin:0; white-space:nowrap;}
   .main-nav a:hover{color:var(--terracotta); background:rgba(233,202,162,0.16);}
+  .main-nav a[aria-current="page"]{color:var(--terracotta); background:rgba(233,202,162,0.24); box-shadow:inset 0 -2px 0 var(--terracotta);}
+  .main-nav a.btn-primary[aria-current="page"]{color:#fff; background:var(--ink); box-shadow:0 3px 10px rgba(58,42,40,0.2);}
   .btn{
-    display:inline-block; padding:11px 22px; border-radius:30px; font-size:14.5px; font-weight:600;
+    display:inline-block; padding:11px 22px; border-radius:30px; font-size:16px; font-weight:600;
     text-decoration:none; transition:transform .15s ease, box-shadow .15s ease; border:none; cursor:pointer; letter-spacing:0.02em;
   }
   .btn-primary{background:var(--terracotta); color:#fff; box-shadow:0 3px 10px rgba(199,132,99,0.35);}
@@ -68,8 +70,9 @@
     display:inline-block; font-size:12px; letter-spacing:3px; font-weight:700; color:var(--terracotta);
     background:var(--cream); padding:6px 14px; border-radius:20px; margin-bottom:16px;
   }
-  .hero h1{font-size:38px; line-height:1.12; margin:0 0 12px; color:var(--ink); font-weight:600;}
+  .hero h1{font-size:clamp(2rem, 3.5vw, 2.4rem); line-height:1.12; margin:0 0 12px; color:var(--ink); font-weight:600;}
   .hero h1 span{color:var(--terracotta);}
+  .hero .service-area{font-size:14px; color:var(--ink-soft); letter-spacing:0.04em; margin:0;}
   .hero p.sub{font-size:16px; color:var(--ink-soft); max-width:560px; margin:0 auto 20px;}
   .hero-ctas{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
   .hero-tags{margin-top:44px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
@@ -193,15 +196,11 @@
 
   .steps-3{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:14px;}
   .step-item{position:relative; background:#fff; border:1px solid #EFE7DF; border-radius:14px; padding:18px 22px 18px 72px; box-shadow:var(--shadow); min-width:0;}
-  .step-item:not(:last-child)::after{content:'→'; position:absolute; top:50%; right:-22px; color:var(--terracotta); font-size:1.35rem; font-weight:700; transform:translateY(-50%);}
   .step-item .step-head{display:block; margin-bottom:4px; min-width:0;}
   .step-item .n{position:absolute; top:50%; left:18px; display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; background:var(--terracotta); color:#fff; font-weight:700; flex-shrink:0; transform:translateY(-50%);}
   .step-item:nth-child(1) .n{background:var(--gold);}
   .step-item:nth-child(2) .n{background:var(--greige);}
-  .step-item h4{width:100%; max-width:280px; margin:0 0 4px; color:var(--ink); font-size:0.95rem; line-height:1.2; letter-spacing:0.04em; text-transform:lowercase; font-variant-caps:small-caps; min-width:0; word-break:break-word; overflow-wrap:break-word;}
-  .step-item:nth-child(1) h4{color:var(--gold);}
-  .step-item:nth-child(2) h4{color:var(--greige);}
-  .step-item:nth-child(3) h4{color:var(--terracotta);}
+  .step-item h4{width:100%; max-width:280px; margin:0 0 4px; color:var(--terracotta); font-size:0.95rem; line-height:1.2; letter-spacing:0.04em; text-transform:lowercase; font-variant-caps:small-caps; min-width:0; word-break:break-word; overflow-wrap:break-word;}
   .step-item p{margin:0; color:var(--ink-soft); font-size:0.92rem; line-height:1.45;}
 
   @keyframes slidePillars{
@@ -286,7 +285,6 @@
     .flow2{flex-direction:column;}
     .flow2 .arrow{transform:rotate(90deg); padding:4px 0;}
     .flow2 ul{columns:1;}
-    .hero h1{font-size:38px;}
     .main-nav{position:fixed; top:70px; left:0; right:0; background:#fff; flex-direction:column; padding:20px 28px;
       border-bottom:1px solid #EFE7DF; display:none; gap:18px; box-shadow:0 8px 20px rgba(0,0,0,0.06);}
     .main-nav a{margin:0;}
@@ -298,7 +296,6 @@
   }
   @media (max-width:620px){
     .steps-3{grid-template-columns:1fr;}
-    .step-item:not(:last-child)::after{display:none;}
     .broader-grid{grid-template-columns:1fr; gap:8px; max-width:360px;}
     .broader-card{min-height:0; padding:8px 0;}
     .broader-arc-slot{min-height:90px; margin-bottom:0;}
@@ -320,6 +317,7 @@
       <img class="brand-wordmark" src="assets/Thoughtfully_Organised_Wordmark.png" alt="Thoughtfully Organised">
     </a>
     <nav class="main-nav" id="navLinks">
+      <a href="index.html" aria-current="page">Home</a>
       <a href="home-organisation.html">Home Organisation</a>
       <a href="downsizing-moving.html">Downsizing &amp; Moving</a>
       <a href="family-organisation.html">Family Organisation</a>
@@ -338,8 +336,9 @@
   <div class="hero">
     <img class="hero-arcbg" src="assets/arcs_only.png" alt="">
     <div class="hero-inner">
-      <span class="eyebrow">HOME ORGANISATION &amp; DECLUTTERING</span>
+      <span class="eyebrow">HOME ORGANISATION • DECLUTTERING • MOVING SUPPORT</span>
       <h1>Practical support. <span>Zero judgement.</span></h1>
+      <p class="service-area">Servicing Lake Macquarie &amp; Newcastle</p>
     </div>
   </div>
 
@@ -444,7 +443,7 @@
         <p>Get in touch for a no-judgement conversation about what's not working — and what could.</p>
         <div class="hero-ctas">
           <a href="mailto:hello@thoughtfullyorganised.com.au" class="btn btn-primary">Email us</a>
-          <a href="tel:+61000000000" class="btn btn-ghost">Call us</a>
+          <a href="tel:+61494912884" class="btn btn-ghost">Call us</a>
         </div>
       </div>
     </div>

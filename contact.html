@@ -17,13 +17,14 @@
         <img class="brand-wordmark" src="assets/Thoughtfully_Organised_Wordmark.png" alt="Thoughtfully Organised" />
       </a>
       <nav class="main-nav" id="navLinks">
+        <a href="index.html">Home</a>
         <a href="home-organisation.html">Home Organisation</a>
         <a href="downsizing-moving.html">Downsizing &amp; Moving</a>
         <a href="family-organisation.html">Family Organisation</a>
         <a href="ndis-support.html">NDIS Support</a>
         <a href="about.html">About</a>
         <a href="pricing.html">Pricing</a>
-        <a href="contact.html" class="btn btn-primary">Get in touch</a>
+        <a href="contact.html" class="btn btn-primary" aria-current="page">Get in touch</a>
       </nav>
       <button class="navtoggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
     </div>
@@ -37,7 +38,7 @@
         <p class="lead">We’d love to hear what’s feeling overwhelming and talk through practical next steps.</p>
         <div class="hero-actions">
           <a href="mailto:hello@thoughtfullyorganised.com.au" class="btn btn-primary">Email us</a>
-          <a href="tel:+61000000000" class="btn btn-ghost">Call us</a>
+          <a href="tel:+61494912884" class="btn btn-ghost">Call us</a>
         </div>
       </div>
     </section>
@@ -56,14 +57,16 @@
             <span class="detail-icon" aria-hidden="true">
               <img src="assets/Phone.png" alt="Phone icon" />
             </span>
-            <a href="tel:+61000000000">+61 0000 0000</a>
+            <a href="tel:+61494912884">0494 912 884</a>
           </p>
-          <p>Service Areas: Lake Macquarie, Newcastle &amp; Hunter regions</p>
+          <p>Service Areas: Lake Macquarie &amp; Newcastle</p>
         </div>
 
         <div class="contact-card">
           <h3>Submit an Enquiry</h3>
           <form id="enquiryForm" novalidate>
+            <input type="hidden" name="access_key" value="3abe65d9-357a-45cd-ba2a-da905ff23dbb" />
+            <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
             <div class="form-row">
               <div class="field">
                 <label for="name">Full name</label>
@@ -71,14 +74,14 @@
               </div>
               <div class="field">
                 <label for="email">Email address</label>
-                <input id="email" name="email" type="email" placeholder="Your email" required />
+                <input id="email" name="email" type="email" placeholder="Your email" autocomplete="email" />
               </div>
             </div>
 
             <div class="form-row">
               <div class="field">
                 <label for="phone">Phone number</label>
-                <input id="phone" name="phone" type="tel" placeholder="Your phone number" />
+                <input id="phone" name="phone" type="tel" placeholder="Your phone number" autocomplete="tel" />
               </div>
               <div class="field">
                 <label for="service">Service area</label>
@@ -86,7 +89,6 @@
                   <option value="">Select one</option>
                   <option>Lake Macquarie</option>
                   <option>Newcastle region</option>
-                  <option>Hunter region</option>
                   <option>General Enquiry</option>
                 </select>
               </div>
@@ -104,7 +106,7 @@
             </div>
 
             <div class="field full-width-note">
-              <span class="field-hint">Please note, service is limited to Lake Macquarie, Newcastle &amp; Hunter suburbs</span>
+              <span class="field-hint">Please note, service is limited to Lake Macquarie &amp; Newcastle suburbs</span>
             </div>
 
             <div class="form-row">
@@ -138,6 +140,8 @@
               </label>
             </div>
 
+            <p class="form-error" id="formError" role="alert"></p>
+            <p class="form-success" id="formSuccess" role="status" aria-live="polite"></p>
             <button type="submit" class="btn btn-primary">Submit an Enquiry</button>
           </form>
         </div>
@@ -174,37 +178,159 @@
     </div>
   </footer>
 
+  <dialog class="area-dialog" id="areaDialog">
+    <h3>Outside our service areas?</h3>
+    <p>Our service areas are limited to Lake Macquarie and Newcastle. Would you like to proceed with your enquiry anyway?</p>
+    <div class="area-dialog-actions">
+      <button type="button" class="btn btn-primary" id="areaProceed">Proceed</button>
+      <button type="button" class="btn btn-ghost" id="areaCancel">Cancel</button>
+    </div>
+  </dialog>
+
   <script>
     const enquiryForm = document.getElementById('enquiryForm');
+    const formError = document.getElementById('formError');
+    const formSuccess = document.getElementById('formSuccess');
+    const submitButton = enquiryForm.querySelector('button[type="submit"]');
+    const areaDialog = document.getElementById('areaDialog');
+
+    const EMAIL_RE = /^[A-Za-z0-9._%+'-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/;
+    // Australian mobile (04…) or landline (02, 03, 07, 08), with optional +61 / 61 prefix
+    const AU_PHONE_RE = /^(?:\+?61|0)(?:4\d{8}|[2378]\d{8})$/;
+    const AU_POSTCODE_RE = /^(?:0[289]\d{2}|[1-9]\d{3})$/;
+
+    function setError(id, message) {
+      const field = document.getElementById(id).closest('.field');
+      let err = field.querySelector('.field-error');
+      if (!err) {
+        err = document.createElement('div');
+        err.className = 'field-error';
+        err.setAttribute('role', 'alert');
+        field.appendChild(err);
+      }
+      err.textContent = message || '';
+      field.classList.toggle('has-error', !!message);
+    }
+
+    function validateForm() {
+      const email = enquiryForm.email.value.trim();
+      const phone = enquiryForm.phone.value.trim().replace(/[\s\-().]/g, '');
+      const postcode = enquiryForm.postcode.value.trim();
+      const pref = enquiryForm.contactPref.value;
+      const messages = {};
+
+      if (!document.getElementById('name').value.trim()) {
+        messages.name = 'Please enter your name.';
+      }
+      if (!enquiryForm.service.value) {
+        messages.service = 'Please select a service area.';
+      }
+      if (!email && !phone) {
+        messages.email = 'Please provide an email address or a phone number.';
+        messages.phone = 'Please provide a phone number or an email address.';
+      }
+      if (email && !EMAIL_RE.test(email)) {
+        messages.email = 'Please enter a valid email address, e.g. name@example.com.au';
+      }
+      if (phone && !AU_PHONE_RE.test(phone)) {
+        messages.phone = 'Please enter a valid Australian mobile or landline number, e.g. 0412 345 678 or +61 2 4912 3456.';
+      }
+      if (pref === 'Email' && !email) {
+        messages.email = 'Please enter your email address, as email is your preferred contact method.';
+      }
+      if (pref === 'Phone' && !phone) {
+        messages.phone = 'Please enter your phone number, as phone is your preferred contact method.';
+      }
+      if (postcode && !AU_POSTCODE_RE.test(postcode)) {
+        messages.postcode = 'Please enter a valid 4-digit Australian postcode.';
+      }
+
+      ['name', 'email', 'phone', 'service', 'postcode'].forEach(function (id) {
+        setError(id, messages[id] || '');
+      });
+
+      const consent = enquiryForm.consent.checked;
+      const consentField = enquiryForm.consent.closest('.field');
+      let consentErr = consentField.querySelector('.field-error');
+      if (!consentErr) {
+        consentErr = document.createElement('div');
+        consentErr.className = 'field-error';
+        consentErr.setAttribute('role', 'alert');
+        consentField.appendChild(consentErr);
+      }
+      consentErr.textContent = consent ? '' : 'Please tick the box to agree to be contacted before submitting.';
+      consentField.classList.toggle('has-error', !consent);
+
+      return Object.keys(messages).length === 0 && consent;
+    }
+
+    async function sendEnquiry() {
+      const accessKey = enquiryForm.elements.access_key.value.trim();
+      if (!accessKey || accessKey === 'REPLACE_WITH_YOUR_WEB3FORMS_ACCESS_KEY') {
+        formError.textContent = 'The enquiry form is not connected yet. Please contact us by email or phone.';
+        formError.classList.add('show');
+        return;
+      }
+
+      const formData = new FormData(enquiryForm);
+      formData.set('subject', 'New Web Enquiry from ' + document.getElementById('name').value.trim());
+      formData.set('from_name', 'Thoughtfully Organised website enquiry');
+      if (enquiryForm.email.value.trim()) {
+        formData.set('replyto', enquiryForm.email.value.trim());
+      }
+
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending…';
+      formError.classList.remove('show');
+      formSuccess.textContent = '';
+
+      try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData
+        });
+        const result = await response.json();
+        if (!response.ok || !result.success) {
+          throw new Error(result.message || 'Web3Forms did not accept the enquiry.');
+        }
+
+        enquiryForm.reset();
+        formSuccess.textContent = 'Thank you — your enquiry has been sent. We’ll be in touch soon.';
+      } catch (error) {
+        console.error('Unable to submit the enquiry form:', error);
+        formError.textContent = 'We couldn’t send your enquiry just now. Please try again or contact us by email or phone.';
+        formError.classList.add('show');
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Submit an Enquiry';
+      }
+    }
 
     enquiryForm.addEventListener('submit', function (event) {
       event.preventDefault();
 
-      const formData = new FormData(enquiryForm);
-      const name = formData.get('name') || 'Unknown';
-      const email = formData.get('email') || '';
-      const phone = formData.get('phone') || '';
-      const service = formData.get('service') || '';
-      const location = formData.get('location') || '';
-      const postcode = (formData.get('postcode') || '').toString().trim();
-      const contactPref = formData.get('contactPref') || '';
-      const timing = formData.get('timing') || '';
-      const details = formData.get('details') || '';
+      if (!validateForm()) {
+        formError.textContent = 'Please check the highlighted fields and try again.';
+        formError.classList.add('show');
+        const firstError = enquiryForm.querySelector('.has-error input, .has-error select');
+        if (firstError) firstError.focus();
+        return;
+      }
+      formError.classList.remove('show');
 
-      const subject = encodeURIComponent('New enquiry: ' + service);
-      const body = encodeURIComponent(
-        'Name: ' + name + '\n' +
-        'Email: ' + email + '\n' +
-        'Phone: ' + phone + '\n' +
-        'Service area: ' + service + '\n' +
-        'Location: ' + location + '\n' +
-        'Postcode: ' + postcode + '\n' +
-        'Preferred contact method: ' + contactPref + '\n' +
-        'Timing: ' + timing + '\n\n' +
-        'Details:\n' + details
-      );
+      if (enquiryForm.service.value !== 'Lake Macquarie' && enquiryForm.service.value !== 'Newcastle region') {
+        areaDialog.showModal();
+        return;
+      }
+      sendEnquiry();
+    });
 
-      window.location.href = 'mailto:hello@thoughtfullyorganised.com.au?subject=' + subject + '&body=' + body;
+    document.getElementById('areaProceed').addEventListener('click', function () {
+      areaDialog.close();
+      sendEnquiry();
+    });
+    document.getElementById('areaCancel').addEventListener('click', function () {
+      areaDialog.close();
     });
 
     const navToggle = document.getElementById('navToggle');
