@@ -271,6 +271,15 @@ section.alt { background: #fff; border-top: 1px solid #f1e9e1; border-bottom: 1p
   color: var(--ink-soft);
   font-size: 1rem;
 }
+.section-head.about-how-head p {
+  max-width: 640px;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: left;
+}
+.section-head.about-how-head p + p {
+  margin-top: 12px;
+}
 
 .grid-3 {
   display: grid;
@@ -778,6 +787,9 @@ section.alt { background: #fff; border-top: 1px solid #f1e9e1; border-bottom: 1p
 .price-row-expandable .price-details {
   margin-bottom: 12px;
 }
+.price-description + .price-description {
+  margin-top: 14px;
+}
 .price-row-expandable .price-details + .price-description + .price-description {
   margin-top: 12px;
 }
@@ -995,6 +1007,20 @@ section.alt { background: #fff; border-top: 1px solid #f1e9e1; border-bottom: 1p
   text-align: center;
 }
 .site-footer .brand { justify-content: center; }
+.site-footer .iopo-membership {
+  margin: 18px auto 0;
+  text-align: center;
+}
+.site-footer .iopo-membership img {
+  width: min(136px, 35vw);
+  height: auto;
+  margin: 0 auto;
+}
+.site-footer .iopo-membership p {
+  margin: 0 auto 8px;
+  font-size: 13px;
+  white-space: nowrap;
+}
 .site-footer .footer-links {
   display: flex;
   justify-content: center;
@@ -1007,6 +1033,9 @@ section.alt { background: #fff; border-top: 1px solid #f1e9e1; border-bottom: 1p
 .site-footer p { color: var(--ink-soft); margin: 6px 0; }
 
 @media (max-width: 900px) {
+  .site-footer .iopo-membership p {
+    white-space: normal;
+  }
   .grid-3,
   .feature-list,
   .contact-grid,
