@@ -270,6 +270,9 @@
   }
   footer.site-footer .brand img{height:26px; width:auto;}
   footer.site-footer .brand img{width:clamp(240px,28vw,320px); height:auto;}
+  footer.site-footer .iopo-membership{margin:18px auto 0; text-align:center;}
+  footer.site-footer .iopo-membership img{width:min(136px,35vw); height:auto; margin:0 auto;}
+  footer.site-footer .iopo-membership p{margin:0 auto 8px; font-size:13px; white-space:nowrap;}
   footer.site-footer .footer-links{
     display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin:18px 0 10px;
   }
@@ -279,6 +282,7 @@
 
   /* ---------- responsive ---------- */
   @media (max-width:900px){
+    footer.site-footer .iopo-membership p{white-space:normal;}
     .grid3, .svc-grid{flex-direction:column;}
     .advantages{display:flex; flex-direction:row; gap:8px 14px;}
     .advantages .adv-item{flex:1 1 220px;}
@@ -320,7 +324,6 @@
       <img class="brand-wordmark" src="assets/Thoughtfully_Organised_Wordmark.png" alt="Thoughtfully Organised">
     </a>
     <nav class="main-nav" id="navLinks">
-      <a href="index.html" aria-current="page">Home</a>
       <a href="home-organisation.html">Home Organisation</a>
       <a href="downsizing-moving.html">Downsizing &amp; Moving</a>
       <a href="family-organisation.html">Family Organisation</a>
@@ -455,6 +458,12 @@
 <footer class="site-footer">
   <div class="wrap">
     <a href="index.html" class="brand"><img src="assets/Thoughtfully_Organised_Wordmark.png" alt="Thoughtfully Organised"></a>
+    <div class="iopo-membership">
+      <p>Professional Member of the Institute of Professional Organisers (IOPO)</p>
+      <a href="https://www.iopo.com.au/Web/Web/Find-An-Organiser/Find-An-Organiser.aspx?hkey=3c1b9fab-8a6a-4941-8056-9ec045242941#AD" target="_blank" rel="noopener noreferrer">
+        <img src="assets/IOPO Professional Member Badge GREY V250505.png" alt="IOPO Professional Member Badge — find an organiser in the IOPO directory">
+      </a>
+    </div>
     <div class="footer-links">
       <a href="home-organisation.html">Home Organisation</a>
       <a href="downsizing-moving.html">Downsizing &amp; Moving</a>
@@ -462,6 +471,7 @@
       <a href="ndis-support.html">NDIS Support</a>
       <a href="about.html">About</a>
       <a href="pricing.html">Pricing</a>
+      <a href="faq.html">FAQs</a>
       <a href="contact.html">Contact</a>
     </div>
     <p>&copy; 2026 Thoughtfully Organised.</p>
